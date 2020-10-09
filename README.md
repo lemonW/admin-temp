@@ -1,4 +1,5 @@
 # admin-temp
+基于vue-admin-template v4.4.0
 
 ## Project setup
 ```
@@ -9,7 +10,10 @@ npm install
 ```
 npm run serve
 ```
-
+### Compiles and minifies for test
+```
+npm run build:test
+```
 ### Compiles and minifies for production
 ```
 npm run build
