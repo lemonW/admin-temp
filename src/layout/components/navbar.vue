@@ -39,13 +39,13 @@ import hamburger from "@/components/hamburger";
 export default {
   components: {
     breadcrumb,
-    hamburger
+    hamburger,
   },
   computed: {
     ...mapGetters([
       "sidebar",
-      "avatar"
-    ])
+      "avatar",
+    ]),
   },
   methods: {
     toggleSideBar() {
@@ -54,8 +54,8 @@ export default {
     async logout() {
       await this.$store.dispatch("user/logout");
       this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -6,7 +6,7 @@ import getPageTitle from "@/utils/get-page-title";
 
 const whiteList = ["/login"]; // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // set page title
   document.title = getPageTitle(to.meta.title);
 

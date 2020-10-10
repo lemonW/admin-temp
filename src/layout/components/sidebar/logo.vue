@@ -19,15 +19,15 @@ export default {
   props: {
     collapse: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       title: "project name",
-      logo: ""
+      logo: "",
     };
-  }
+  },
 };
 </script>
 

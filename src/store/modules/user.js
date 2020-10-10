@@ -6,7 +6,7 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: "",
-    avatar: ""
+    avatar: "",
   };
 };
 
@@ -24,7 +24,7 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar;
-  }
+  },
 };
 
 const actions = {
@@ -32,7 +32,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo;
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ username: username.trim(), password }).then(response => {
         const { data } = response;
         commit("SET_TOKEN", data.token);
         setToken(data.token);
@@ -85,13 +85,13 @@ const actions = {
       commit("RESET_STATE");
       resolve();
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };
 

@@ -2,17 +2,18 @@
   <div class="has-logo">
     <logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        :default-active="activeMenu"
+      <el-menu :default-active="activeMenu"
         :collapse="isCollapse"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :unique-opened="false"
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
-        mode="vertical"
-      >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        mode="vertical">
+        <sidebar-item v-for="route in routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -27,10 +28,9 @@ import variables from "@/styles/variables.scss";
 export default {
   components: { sidebarItem, logo },
   computed: {
-    ...mapGetters([
-      "sidebar"
-    ]),
+    ...mapGetters(["sidebar"]),
     routes() {
+      console.log(this.$router.options.routes);
       return this.$router.options.routes;
     },
     activeMenu() {
@@ -47,7 +47,7 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened;
-    }
-  }
+    },
+  },
 };
 </script>

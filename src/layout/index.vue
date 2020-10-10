@@ -20,7 +20,7 @@ export default {
   components: {
     navbar,
     sidebar,
-    appMain
+    appMain,
   },
   mixins: [resizeMixin],
   computed: {
@@ -35,15 +35,15 @@ export default {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === "mobile"
+        mobile: this.device === "mobile",
       };
-    }
+    },
   },
   methods: {
     handleClickOutside() {
       this.$store.dispatch("app/closeSideBar", { withoutAnimation: false });
-    }
-  }
+    },
+  },
 };
 </script>
 

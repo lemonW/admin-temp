@@ -15,13 +15,13 @@ import pathToRegexp from "path-to-regexp";
 export default {
   data() {
     return {
-      levelList: null
+      levelList: null,
     };
   },
   watch: {
     $route() {
       this.getBreadcrumb();
-    }
+    },
   },
   created() {
     this.getBreadcrumb();
@@ -48,7 +48,7 @@ export default {
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route;
-      var toPath = pathToRegexp.compile(path);
+      let toPath = pathToRegexp.compile(path);
       return toPath(params);
     },
     handleLink(item) {
@@ -58,8 +58,8 @@ export default {
         return;
       }
       this.$router.push(this.pathCompile(path));
-    }
-  }
+    },
+  },
 };
 </script>
 
