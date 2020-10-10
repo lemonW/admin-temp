@@ -1,15 +1,15 @@
-import Cookies from "js-cookie";
+import storage from "good-storage";
 
 const TokenKey = "vue_admin_template_token";
 
 export function getToken() {
-  return Cookies.get(TokenKey);
+  return storage.session.get(TokenKey);
 }
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token);
+  return storage.session.set(TokenKey, token);
 }
 
 export function removeToken() {
-  return Cookies.remove(TokenKey);
+  return storage.session.remove(TokenKey);
 }
