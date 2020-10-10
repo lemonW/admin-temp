@@ -1,13 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
-Vue.use(Router);
-/* Layout */
 import Layout from "@/layout";
 import store from "@/store";
 import { Message } from "element-ui";
 import { getToken } from "@/utils/auth"; // get token from cookie
 import getPageTitle from "@/utils/get-page-title";
 
+Vue.use(Router);
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -49,12 +48,14 @@ export const constantRoutes = [
     path: "/",
     component: Layout,
     redirect: "/dashboard",
-    children: [{
-      path: "dashboard",
-      name: "Dashboard",
-      component: () => import("@/views/dashboard/index"),
-      meta: { title: "Dashboard", icon: "dashboard" },
-    }],
+    children: [
+      {
+        path: "dashboard",
+        name: "Dashboard",
+        component: () => import("@/views/dashboard/index"),
+        meta: { title: "Dashboard", icon: "dashboard" },
+      },
+    ],
   },
 
   {
@@ -122,13 +123,15 @@ export const constantRoutes = [
             children: [
               {
                 path: "menu1-2-1",
-                component: () => import("@/views/nested/menu1/menu1-2/menu1-2-1"),
+                component: () =>
+                  import("@/views/nested/menu1/menu1-2/menu1-2-1"),
                 name: "Menu1-2-1",
                 meta: { title: "Menu1-2-1" },
               },
               {
                 path: "menu1-2-2",
-                component: () => import("@/views/nested/menu1/menu1-2/menu1-2-2"),
+                component: () =>
+                  import("@/views/nested/menu1/menu1-2/menu1-2-2"),
                 name: "Menu1-2-2",
                 meta: { title: "Menu1-2-2" },
               },
@@ -166,58 +169,51 @@ export const constantRoutes = [
   { path: "*", redirect: "/404", hidden: true },
 ];
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes,
-});
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 
-const whiteList = ["/login"]; // no redirect whitelist
+// const whiteList = ["/login"]; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
-  // set page title
   document.title = getPageTitle(to.meta.title);
-
+  next();
   // determine whether the user has logged in
-  const hasToken = getToken();
+  // const hasToken = getToken();
 
-  if (hasToken) {
-    if (to.path === "/login") {
-      // if is logged in, redirect to the home page
-      next({ path: "/" });
-    } else {
-      const hasGetUserInfo = store.getters.name;
-      if (hasGetUserInfo) {
-        next();
-      } else {
-        try {
-          // get user info
-          await store.dispatch("user/getInfo");
+  // if (hasToken) {
+  //   if (to.path === "/login") {
+  //     next({ path: "/" });
+  //   } else {
+  //     const hasGetUserInfo = store.getters.name;
+  //     if (hasGetUserInfo) {
+  //       next();
+  //     } else {
+  //       try {
+  //         // get user info
+  //         await store.dispatch("user/getInfo");
 
-          next();
-        } catch (error) {
-          // remove token and go to login page to re-login
-          await store.dispatch("user/resetToken");
-          Message.error(error || "Has Error");
-          next(`/login?redirect=${to.path}`);
-        }
-      }
-    }
-  } else {
-    /* has no token*/
-
-    if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
-      next();
-    } else {
-      // other pages that do not have permission to access are redirected to the login page.
-      next(`/login?redirect=${to.path}`);
-    }
-  }
+  //         next();
+  //       } catch (error) {
+  //         store.commit("user/RESET_STATE");
+  //         Message.error(error || "Has Error");
+  //         next(`/login?redirect=${to.path}`);
+  //       }
+  //     }
+  //   }
+  // } else {
+  //   if (whiteList.indexOf(to.path) !== -1) {
+  //     next();
+  //   } else {
+  //     next(`/login?redirect=${to.path}`);
+  //   }
+  // }
 });
-
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {

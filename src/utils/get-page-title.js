@@ -1,4 +1,4 @@
-const title = "Vue Admin Template";
+const title = "NCME管理后台";
 
 export default function getPageTitle(pageTitle) {
   if (pageTitle) {
