@@ -5,7 +5,7 @@ import store from "@/store";
 import { Message } from "element-ui";
 import { getToken } from "@/utils/auth"; // get token from cookie
 import getPageTitle from "@/utils/get-page-title";
-
+import cmsManageRoutes from './cmsManage';
 Vue.use(Router);
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -42,20 +42,6 @@ export const constantRoutes = [
     path: "/404",
     component: () => import("@/views/common/404"),
     hidden: true,
-  },
-
-  {
-    path: "/",
-    component: Layout,
-    redirect: "/dashboard",
-    children: [
-      {
-        path: "dashboard",
-        name: "Dashboard",
-        component: () => import("@/views/dashboard/index"),
-        meta: { title: "Dashboard", icon: "dashboard" },
-      },
-    ],
   },
 
   {
@@ -153,7 +139,7 @@ export const constantRoutes = [
       },
     ],
   },
-
+  ...cmsManageRoutes,
   // 404 page must be placed at the end !!!
   { path: "*", redirect: "/404", hidden: true },
 ];
