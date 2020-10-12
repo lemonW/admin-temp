@@ -34,7 +34,7 @@ Vue.use(Router);
 export const constantRoutes = [
   {
     path: "/login",
-    component: () => import("@/views/common/login"),
+    component: () => import("@/views/common/login/index"),
     hidden: true,
   },
 
@@ -150,17 +150,6 @@ export const constantRoutes = [
         component: () => import("@/views/nested/menu2/index"),
         name: "Menu2",
         meta: { title: "menu2" },
-      },
-    ],
-  },
-
-  {
-    path: "external-link",
-    component: Layout,
-    children: [
-      {
-        path: "https://panjiachen.github.io/vue-element-admin-site/#/",
-        meta: { title: "External Link", icon: "link" },
       },
     ],
   },
