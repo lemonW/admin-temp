@@ -19,7 +19,18 @@ module.exports = {
     },
   },
   parallel: require("os").cpus().length > 1,
-  devServer: {},
+  devServer: {
+    port: 8890,
+    proxy: {
+      "/api": {
+        target: "",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      },
+    }
+  },
   configureWebpack: (config) => {
     config.resolve.alias = {
       "@": resolve("src"),
