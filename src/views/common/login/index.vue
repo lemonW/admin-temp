@@ -121,7 +121,7 @@ export default {
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || "/" });
+              this.$router.replace({ path: this.redirect || "/cms" });
               this.loading = false;
             })
             .catch(() => {
