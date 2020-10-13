@@ -43,6 +43,11 @@ export const constantRoutes = [
     hidden: true,
   },
   {
+    path: "/",
+    component: Layout,
+    redirect: "/cms",
+  },
+  {
     path: "/example",
     component: Layout,
     redirect: "/example/table",
@@ -64,7 +69,7 @@ export const constantRoutes = [
     ],
   },
   ...cmsManageRoutes,
-  
+
   // 404 page must be placed at the end !!!
   { path: "*", redirect: "/404", hidden: true },
 ];
