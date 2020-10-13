@@ -9,6 +9,7 @@ export default [
     redirect: "/cms/contentManage",
     meta: {
       title: "CMS系统",
+      icon: "nested",
     },
     children: [
       {

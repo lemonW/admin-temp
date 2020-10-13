@@ -71,7 +71,7 @@ service.interceptors.response.use(
       Message({
         message: res.message || showStatus(res.status),
         type: "error",
-        duration: 5 * 1000,
+        duration: 3 * 1000,
       });
 
       if (res.status === 401 || res.status === 50001) {
@@ -87,7 +87,7 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: "error",
-      duration: 5 * 1000,
+      duration: 3 * 1000,
     });
     return Promise.reject(error);
   },

@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      title: "project name",
+      title: "NCME管理后台",
       logo: "",
     };
   },
