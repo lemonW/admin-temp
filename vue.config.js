@@ -59,7 +59,7 @@ module.exports = {
     };
     config.externals(externals);
     const cdn = {
-      js: ["https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"],
+      js: ["https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"],
     };
     config.plugin("html").tap((args) => {
       args[0].cdn = cdn;
